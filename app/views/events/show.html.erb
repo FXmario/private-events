@@ -1,0 +1,22 @@
+<h1><%= @event.event_name %></h1>
+
+<div>
+	<div>
+		Title : <%= @event.event_name %><br>
+	</div>
+	<div>
+		Author : <%= @event.user.email %><br>
+	</div>
+	<div>
+		Date : <%= @event.date %><br>
+	</div>
+	<div>
+		Location : <%= @event.location %><br>
+	</div>
+	<div>
+		Event Description : <br>
+	</div>
+	<div>
+		<%= @event.body %><br>
+	</div>
+</div>

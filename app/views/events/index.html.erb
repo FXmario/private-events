@@ -1,0 +1,25 @@
+<h1>Home - Private Events</h1>
+<div>
+	<% flash.each do |msg| %>
+		<%= msg %>
+	<% end %>
+</div>
+<% if @events.empty? %>
+	<div>
+		<h3>
+			Alone here. Add some event 
+			<%= link_to "here.", new_event_path %>
+		</h3>	
+	</div>
+<% else %>
+	<div>
+		<% @events.each do |event| %>
+			Author : <%= event.user.email %><br>
+			<%= link_to event.event_name, event %><br>
+			<%= event.date %><br>
+			<%= event.location %><br>
+			<%= event.body %><br>
+			<hr>
+		<% end %>
+	</div>
+<% end %>
