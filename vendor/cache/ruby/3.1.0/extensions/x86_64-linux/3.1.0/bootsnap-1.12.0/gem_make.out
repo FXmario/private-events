@@ -1,0 +1,15 @@
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/bootsnap-1.12.0/ext/bootsnap
+/usr/local/rbenv/versions/3.1.0/bin/ruby -I /usr/local/rbenv/versions/3.1.0/lib/ruby/3.1.0 -r ./siteconf20220602-282-w30tpq.rb extconf.rb
+creating Makefile
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/bootsnap-1.12.0/ext/bootsnap
+make DESTDIR\= clean
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/bootsnap-1.12.0/ext/bootsnap
+make DESTDIR\=
+compiling bootsnap.c
+linking shared-object bootsnap/bootsnap.so
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/bootsnap-1.12.0/ext/bootsnap
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 bootsnap.so ./.gem.20220602-282-ig6euc/bootsnap

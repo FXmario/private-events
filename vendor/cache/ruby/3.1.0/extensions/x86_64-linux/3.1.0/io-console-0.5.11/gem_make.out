@@ -1,0 +1,19 @@
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/io-console-0.5.11/ext/io/console
+/usr/local/rbenv/versions/3.1.0/bin/ruby -I /usr/local/rbenv/versions/3.1.0/lib/ruby/3.1.0 -r ./siteconf20220602-282-2jppv5.rb extconf.rb
+checking for termios.h... yes
+checking for cfmakeraw() in termios.h... yes
+checking for sys/ioctl.h... yes
+checking for HAVE_RUBY_FIBER_SCHEDULER_H... yes
+creating Makefile
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/io-console-0.5.11/ext/io/console
+make DESTDIR\= clean
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/io-console-0.5.11/ext/io/console
+make DESTDIR\=
+compiling console.c
+linking shared-object io/console.so
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/io-console-0.5.11/ext/io/console
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 console.so ./.gem.20220602-282-o7ktpf/io

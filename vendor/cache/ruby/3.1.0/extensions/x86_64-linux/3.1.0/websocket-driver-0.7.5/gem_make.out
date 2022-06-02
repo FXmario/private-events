@@ -1,0 +1,15 @@
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+/usr/local/rbenv/versions/3.1.0/bin/ruby -I /usr/local/rbenv/versions/3.1.0/lib/ruby/3.1.0 -r ./siteconf20220602-282-qh1to.rb extconf.rb
+creating Makefile
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\= clean
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\=
+compiling websocket_mask.c
+linking shared-object websocket_mask.so
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/websocket-driver-0.7.5/ext/websocket-driver
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 websocket_mask.so ./.gem.20220602-282-ldij4c

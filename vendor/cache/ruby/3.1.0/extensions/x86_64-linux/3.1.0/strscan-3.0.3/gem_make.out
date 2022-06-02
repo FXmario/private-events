@@ -1,0 +1,16 @@
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/strscan-3.0.3/ext/strscan
+/usr/local/rbenv/versions/3.1.0/bin/ruby -I /usr/local/rbenv/versions/3.1.0/lib/ruby/3.1.0 -r ./siteconf20220602-282-xlvze6.rb extconf.rb
+checking for onig_region_memsize() in ruby.h... yes
+creating Makefile
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/strscan-3.0.3/ext/strscan
+make DESTDIR\= clean
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/strscan-3.0.3/ext/strscan
+make DESTDIR\=
+compiling strscan.c
+linking shared-object strscan.so
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/strscan-3.0.3/ext/strscan
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 strscan.so ./.gem.20220602-282-axq6iv

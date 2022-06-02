@@ -1,0 +1,15 @@
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/bindex-0.8.1/ext/skiptrace
+/usr/local/rbenv/versions/3.1.0/bin/ruby -I /usr/local/rbenv/versions/3.1.0/lib/ruby/3.1.0 -r ./siteconf20220602-282-95rtw4.rb extconf.rb
+creating Makefile
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= clean
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\=
+compiling cruby.c
+linking shared-object skiptrace/internal/cruby.so
+
+current directory: /mnt/d/rails_projects/private-events/vendor/cache/ruby/3.1.0/gems/bindex-0.8.1/ext/skiptrace
+make DESTDIR\= install
+/usr/bin/install -c -m 0755 cruby.so ./.gem.20220602-282-2qhbtu/skiptrace/internal
