@@ -1,25 +1,56 @@
 <h1>Home - Private Events</h1>
-<div>
+<% if user_signed_in? %>
+	<div>
+		<%= link_to "Log out", destroy_user_session_path, 'data-turbo-method': :delete %>
+	</div>
+	<div>
 	<% flash.each do |msg| %>
 		<%= msg %>
-	<% end %>
-</div>
-<% if @events.empty? %>
-	<div>
-		<h3>
-			Alone here. Add some event 
-			<%= link_to "here.", new_event_path %>
-		</h3>	
-	</div>
-<% else %>
-	<div>
-		<% @events.each do |event| %>
-			Author : <%= event.user.email %><br>
-			<%= link_to event.event_name, event %><br>
-			<%= event.date %><br>
-			<%= event.location %><br>
-			<%= event.body %><br>
-			<hr>
 		<% end %>
 	</div>
+	<% if @events.empty? %>
+		<div>
+			<h3>
+				Alone here. Add some event 
+				<%= link_to "here.", new_event_path %>
+			</h3>	
+		</div>
+	<% else %>
+		<div>
+			<% @events.each do |event| %>
+				Author : <%= event.user.email %><br>
+				<%= link_to event.event_name, event %><br>
+				<%= event.date %><br>
+				<%= event.location %><br>
+				<%= event.body %><br>
+				<hr>
+			<% end %>
+		</div>
+	<% end %>
+<% else %>
+	<div>
+		<%= link_to "Login here", new_user_session_path %><br>
+		Don't have an account? Sign in <%= link_to "here", new_user_registration_path %>
+		<br>
+		<br>
+	</div>
+	<% if @events.empty? %>
+		<div>
+			<h3>
+				Alone here. Add some event 
+				<%= link_to "here.", new_event_path %>
+			</h3>	
+		</div>
+	<% else %>
+		<div>
+			<% @events.each do |event| %>
+				Author : <%= event.user.email %><br>
+				<%= link_to event.event_name, event %><br>
+				<%= event.date %><br>
+				<%= event.location %><br>
+				<%= event.body %><br>
+				<hr>
+			<% end %>
+		</div>
+	<% end %>
 <% end %>

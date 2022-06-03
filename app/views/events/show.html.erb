@@ -1,22 +1,87 @@
-<h1><%= @event.event_name %></h1>
+<h1>
+	<center>
+		<%= @event.event_name %>
+	</center>
+</h1>
 
-<div>
+<% if !current_user %>
 	<div>
-		Title : <%= @event.event_name %><br>
+		<div>
+			Title : <%= @event.event_name %><br>
+		</div>
+		<div>
+			Author : <%= @event.user.email %><br>
+		</div>
+		<div>
+			Date : <%= @event.date %><br>
+		</div>
+		<div>
+			Location : <%= @event.location %><br>
+		</div>
+		<div>
+			Event Description : <br>
+		</div>
+		<div>
+			<%= @event.body %><br>
+		</div>
+		<div>
+			<%= button_to "Join this event", '#' %><br>
+			<%= link_to "Back to all events", root_path %>
+		</div>
+	</div>
+<% elsif @event.user.email == current_user.email %>
+	<div>
+		<center>
+			<%= link_to "Edit this event", edit_event_path(@event) %>
+		</center>
 	</div>
 	<div>
-		Author : <%= @event.user.email %><br>
+		<div>
+			Title : <%= @event.event_name %><br>
+		</div>
+		<div>
+			Author : <%= @event.user.email %><br>
+		</div>
+		<div>
+			Date : <%= @event.date %><br>
+		</div>
+		<div>
+			Location : <%= @event.location %><br>
+		</div>
+		<div>
+			Event Description : <br>
+		</div>
+		<div>
+			<%= @event.body %><br>
+		</div>
+		<div>
+			<%= button_to "Join this event", '#' %><br>
+			<%= link_to "Back to all events", root_path %>
+		</div>
 	</div>
+<% else %>
 	<div>
-		Date : <%= @event.date %><br>
+		<div>
+			Title : <%= @event.event_name %><br>
+		</div>
+		<div>
+			Author : <%= @event.user.email %><br>
+		</div>
+		<div>
+			Date : <%= @event.date %><br>
+		</div>
+		<div>
+			Location : <%= @event.location %><br>
+		</div>
+		<div>
+			Event Description : <br>
+		</div>
+		<div>
+			<%= @event.body %><br>
+		</div>
+		<div>
+			<%= button_to "Join this event", '#' %><br>
+			<%= link_to "Back to all events", root_path %>
+		</div>
 	</div>
-	<div>
-		Location : <%= @event.location %><br>
-	</div>
-	<div>
-		Event Description : <br>
-	</div>
-	<div>
-		<%= @event.body %><br>
-	</div>
-</div>
+<% end %>
