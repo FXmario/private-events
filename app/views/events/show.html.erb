@@ -21,8 +21,9 @@
 <% end %>
 
 <div>
-	<% if @participant.nil?  %>
+	<% if @participant.empty?  %>
 		<h5>No Participant</h5>
+		<hr>
 	<% else %>
 		<% @participant.each do |e| %>
 			Event : <%= e.event.event_name %><br>
@@ -52,7 +53,7 @@
 		<%= @event.body %><br>
 	</div>
 	<% if current_user %>
-		<%= form_with(scope: :participant, url: participants_path, method: :post) do |f| %>
+		<%= form_with(scope: :participant, url: participant_path, method: :post) do |f| %>
 			<%= f.hidden_field :user_id, value: current_user.id %><br>
 			<%= f.hidden_field :event_id, value: @event.id %><br>
 			<%= f.hidden_field :status, value: 'attendee' %><br>
