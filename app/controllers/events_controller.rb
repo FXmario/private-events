@@ -1,12 +1,13 @@
 class EventsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
+  before_action :set_events, except: [:index, :new, :create]
 
   def index
     @events = Event.all.order(id: 'desc')
   end
 
   def show
-    @event = Event.find(params[:id])
+    @participant = Participant.where(event_id: params[:id])
   end
 
   def new
@@ -25,7 +26,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    @event = Event.find(params[:id])
+    # @event = Event.find(params[:id])
   end
 
   def update
@@ -46,6 +47,10 @@ class EventsController < ApplicationController
   end
 
   private
+    def set_events
+      @event = Event.find(params[:id])
+    end
+
     def events_params
       params.require(:event).permit(:event_name, :date, :location, :body, :user_id)
     end
