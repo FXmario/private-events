@@ -1,7 +1,7 @@
 class ParticipantsController < ApplicationController
-	# def new
-	# 	@participant = Participant.new	
-	# end
+	def new
+		@participant = Participant.new	
+	end
 
 	def create
 		@event = Event.find(params[:id])

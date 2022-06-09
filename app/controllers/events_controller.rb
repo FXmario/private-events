@@ -7,7 +7,9 @@ class EventsController < ApplicationController
   end
 
   def show
-    @participant = Participant.where(event_id: params[:id])
+    @user = User.find(params[:id]).id
+    # @participant = Participant.find_by(user_id: @user).status
+    @participants = Participant.where(event_id: params[:id])
   end
 
   def new
@@ -26,7 +28,6 @@ class EventsController < ApplicationController
   end
 
   def edit
-    # @event = Event.find(params[:id])
   end
 
   def update
