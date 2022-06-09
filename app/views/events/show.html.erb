@@ -26,7 +26,7 @@
 		<hr>
 	<% else %>
 		<% @participants.each do |e| %>
-			<% @attendeer = e.user.email %>
+			ID Participant : <%= e.id %><br>
 			Event : <%= e.event.event_name %><br>
 			User : <%= e.user.email %><br>
 			<hr>
@@ -54,16 +54,16 @@
 		<%= @event.body %><br>
 	</div>
 	<% if current_user %>
-		<% unless @attendeer == current_user.email %>
-			<%= form_with(scope: :participant, url: participants_path, method: :post) do |f| %>
-				<%= f.number_field :user_id, value: current_user.id %><br>
-				<%= f.number_field :event_id, value: @event.id %><br>
+		<% if @participants.exists?(user_id: current_user.id, event_id: @event.id) %>
+			<%= button_to "Cancel", '#' %>
+		<% else %>
+			<%= form_with(model: [ @event, @event.participants.build] ) do |f| %>
+				<%= f.hidden_field :user_id, value: current_user.id %><br>
+				<%= f.hidden_field :event_id, value: @event.id %><br>
 				<%= f.hidden_field :status, value: 'attendee' %><br>
 				<%= f.submit value: "Join this event" %>
 			<% end %>
-		<% else %>
-			<%= button_to "Cancel", participant_path, method: :delete %>
-		<% end %>
+		<% end %>			
 	<% else %>
 		Wanna join to this event? <%= link_to "Login here first", new_user_session_path %>.<br>
 		New user? <%= link_to "Sign in here", new_user_registration_path %><br>

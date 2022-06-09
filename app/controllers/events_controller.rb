@@ -7,9 +7,7 @@ class EventsController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id]).id
-    # @participant = Participant.find_by(user_id: @user).status
-    @participants = Participant.where(event_id: params[:id])
+    @participants = Participant.where(event_id: params[:id]).order(id: 'desc')
   end
 
   def new
