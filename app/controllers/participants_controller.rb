@@ -1,12 +1,7 @@
 class ParticipantsController < ApplicationController
-	before_action :set_event, only: [:create, :destroy]
+	before_action :set_event, only: [:create]
 
 	def create
-		# if @participant.any?
-		# 	flash[:notice] = "You've already register to this event."
-		# 	redirect_to event_url(@event)
-		# end
-		
 		@participant = @event.participants.create(participant_params)
 
 		if @participant.save
@@ -19,7 +14,7 @@ class ParticipantsController < ApplicationController
 	end
 
 	def destroy
-		@participant = @event.participants.find(params[:id])
+		@participant = Participants.find(params[:id])
 		@participant.destroy
 		flash[:notice] = "You have no longer participate to this event."
 		redirect_to event_url(@event), status: 303

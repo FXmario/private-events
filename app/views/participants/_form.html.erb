@@ -1,6 +1,0 @@
-<%= form_with(scope: @participant) do |f| %>
-	<%= f.number_field :user_id, value: current_user.id %><br>
-	<%= f.number_field :event_id, value: @event.id %><br>
-	<%= f.text_field :status, value: 'attendee' %><br>
-	<%= f.submit value: "Join this event now!" %>
-<% end %>

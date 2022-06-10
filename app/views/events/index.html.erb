@@ -22,8 +22,7 @@
 <% if @events.empty? %>
 	<div>
 		<h3>
-			Alone here. Add some event 
-			<%= link_to "here.", new_event_path %>
+			Alone here. Add some event.<br> 
 		</h3>	
 	</div>
 <% else %>
@@ -37,4 +36,4 @@
 		<% end %>
 	</div>
 <% end %>
-
+<%= link_to "Add new event", new_event_path %>
