@@ -55,7 +55,7 @@
 	</div>
 	<% if current_user %>
 		<% if @participants.exists?(user_id: current_user.id, event_id: @event.id) %>
-			<%= button_to "Cancel", @participant, method: :delete %>
+			<%= button_to "Cancel", event_participant_path(event_id: @event.id, id: @participants.ids), method: :delete %>
 		<% else %>
 			<%= form_with(model: [ @event, @event.participants.build] ) do |f| %>
 				<%= f.hidden_field :user_id, value: current_user.id %><br>

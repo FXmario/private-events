@@ -21,7 +21,7 @@ class EventsController < ApplicationController
       redirect_to event_url(@event)
     else
       flash[:notice] = "Event can't be saved."
-      render :new
+      render :new, status: :unprocessable_entity
     end
   end
 
@@ -35,14 +35,14 @@ class EventsController < ApplicationController
       redirect_to event_url(@event)
     else
       flash[:notice] = "Event can't be updated."
-      redirect_to event_url(@event)
+      render :new, status: :unprocessable_entity
     end
   end
 
   def destroy
     @event.destroy
     flash[:notice] = 'Event has been deleted.'
-    redirect_to root_path
+    redirect_to root_path, status: 303
   end
 
   private
