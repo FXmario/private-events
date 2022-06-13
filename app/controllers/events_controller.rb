@@ -3,7 +3,8 @@ class EventsController < ApplicationController
   before_action :set_events, except: [:index, :new, :create]
 
   def index
-    @events = Event.all.order(id: 'desc')
+    @events_past = Event.past.order(id: 'desc')
+    @events_upcoming = Event.upcoming.order(id: 'desc')
   end
 
   def show
