@@ -19,15 +19,25 @@
 	</div>
 <% end %>
 
+<div>
+	<p>
+		There is <%= Event.public_count %> events in here!
+	</p>
+</div>
+
+<br>
+
 	<div>
 		<% unless @events_upcoming.empty? %>
-			<h4>Upcoming Events</h4>
-			<% @events_upcoming.each do |event| %>
-				Author : <%= event.creator.email %><br>
-				Event Name : <%= link_to event.event_name, event %><br>
-				Date : <%= event.date %><br>
-				Location : <%= event.location %><br>
-				<hr>
+			<% unless event.privated? %>
+				<h4>Upcoming Events</h4>
+				<% @events_upcoming.each do |event| %>
+					Author : <%= event.creator.email %><br>
+					Event Name : <%= link_to event.event_name, event %><br>
+					Date : <%= event.date %><br>
+					Location : <%= event.location %><br>
+					<hr>
+				<% end %>
 			<% end %>
 		<% else %>
 			<h3>There is no upcoming events. Let's make some event!</h3>
@@ -37,13 +47,15 @@
 
 		
 		<% unless @events_past.empty? %>
-			<h4>Past Events</h4>
-			<% @events_past.each do |event| %>
-				Author : <%= event.creator.email %><br>
-				Event Name : <%= link_to event.event_name, event %><br>
-				Date : <%= event.date %><br>
-				Location : <%= event.location %><br>
-				<hr>
+			<% unless event.privated? %>
+				<h4>Past Events</h4>
+				<% @events_past.each do |event| %>
+					Author : <%= event.creator.email %><br>
+					Event Name : <%= link_to event.event_name, event %><br>
+					Date : <%= event.date %><br>
+					Location : <%= event.location %><br>
+					<hr>
+				<% end %>
 			<% end %>
 		<% else %>
 			<h3>There is no past events.</h3>

@@ -35,6 +35,11 @@
 	</div>
 	<br>
 	<div>
+		<%= f.label :status %>
+		<%= f.select :status, ['private','public'], selected: 'public' %>
+	</div>
+	<br>
+	<div>
 		<%= f.hidden_field :user_id, value: current_user.id %>
 	</div>
 	<br>

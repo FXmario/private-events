@@ -12,4 +12,16 @@ class Event < ApplicationRecord
   validates :location, presence: true 
   validates :body, presence: true 
   validates :user_id, presence: true
+
+  VALID_STATUSES = ['private', 'public']
+
+  validates :status, inclusion: { in: VALID_STATUSES }
+
+  def private?
+    status == 'privated'
+  end
+
+  def public_count
+    where(status: 'public').count
+  end
 end
