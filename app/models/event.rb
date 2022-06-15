@@ -2,6 +2,7 @@ class Event < ApplicationRecord
   scope :past, -> { where("date < ? ", Date.today) }
   scope :upcoming, -> { where("date >= ? ", Date.today) }
   scope :recent, -> { order(id: 'desc') }
+  scope :counts, -> { where(status: 'public').count }
 
   belongs_to :creator, class_name: "User", foreign_key: "user_id"
   has_many :participants, dependent: :destroy
@@ -21,10 +22,4 @@ class Event < ApplicationRecord
   def privated?
     status == 'private'
   end
-
-  # class_methods do 
-  #   def public_count
-  #     where(status: 'public').count
-  #   end
-  # end
 end
