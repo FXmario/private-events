@@ -3,12 +3,13 @@ class EventsController < ApplicationController
   before_action :set_events, except: [:index, :new, :create]
 
   def index
-    @events_past = Event.past.order(id: 'desc')
-    @events_upcoming = Event.upcoming.order(id: 'desc')
+    @events_past = Event.past.recent
+    @events_upcoming = Event.upcoming.recent
+    @events_status = Event.where(status: 'public').count
   end
 
   def show
-    @participants = Participant.where(event_id: params[:id]).order(id: 'desc')
+    @participants = Participant.where(event_id: params[:id]).recent
   end
 
   def new

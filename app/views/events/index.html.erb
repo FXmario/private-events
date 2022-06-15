@@ -21,7 +21,7 @@
 
 <div>
 	<p>
-		There is <%= Event.public_count %> events in here!
+		There is <%= @events_status %> events in here!
 	</p>
 </div>
 
@@ -29,9 +29,9 @@
 
 	<div>
 		<% unless @events_upcoming.empty? %>
-			<% unless event.privated? %>
-				<h4>Upcoming Events</h4>
-				<% @events_upcoming.each do |event| %>
+			<h4>Upcoming Events</h4>
+			<% @events_upcoming.each do |event| %>
+				<% unless event.privated? %>
 					Author : <%= event.creator.email %><br>
 					Event Name : <%= link_to event.event_name, event %><br>
 					Date : <%= event.date %><br>
@@ -39,6 +39,7 @@
 					<hr>
 				<% end %>
 			<% end %>
+			
 		<% else %>
 			<h3>There is no upcoming events. Let's make some event!</h3>
 		<% end %>
@@ -47,9 +48,9 @@
 
 		
 		<% unless @events_past.empty? %>
-			<% unless event.privated? %>
-				<h4>Past Events</h4>
-				<% @events_past.each do |event| %>
+			<h4>Past Events</h4>
+			<% @events_past.each do |event| %>
+				<% unless event.privated? %>
 					Author : <%= event.creator.email %><br>
 					Event Name : <%= link_to event.event_name, event %><br>
 					Date : <%= event.date %><br>

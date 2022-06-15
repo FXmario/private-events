@@ -1,4 +1,6 @@
 class Participant < ApplicationRecord
+  scope :recent, -> { order(id: 'desc') }
+
   belongs_to :user
   belongs_to :event
 
