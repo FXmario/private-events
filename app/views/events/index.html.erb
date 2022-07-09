@@ -6,8 +6,10 @@
 	</div>
 	<br>
 	<div>
-	<% flash.each do |msg| %>
-		<%= msg %>
+	<% if notice %>
+		<div>
+			<%= notice %>
+		</div>
 	<% end %>
 	</div>
 <% else %>
@@ -31,7 +33,15 @@
 		<% unless @events_upcoming.empty? %>
 			<h4>Upcoming Events</h4>
 			<% @events_upcoming.each do |event| %>
-				<% unless event.privated? %>
+				<% if event.privated? %>
+					<% if event.attendeer == current_user && event.creator == current_user %>
+						Author : <%= event.creator.email %><br>
+						Event Name : <%= link_to event.event_name, event %><br>
+						Date : <%= event.date %><br>
+						Location : <%= event.location %><br>
+					<% end %>
+				<hr>
+				<% else %>
 					Author : <%= event.creator.email %><br>
 					Event Name : <%= link_to event.event_name, event %><br>
 					Date : <%= event.date %><br>

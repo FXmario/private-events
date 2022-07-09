@@ -56,7 +56,9 @@ group :development, :test do
 end
 
 group :development do
+  gem "ruby-lsp", require: false
   # Use console on exceptions pages [https://github.com/rails/web-console]
+  gem "rspec"
   gem "web-console"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]

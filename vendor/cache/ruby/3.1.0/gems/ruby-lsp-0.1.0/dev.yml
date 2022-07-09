@@ -1,0 +1,20 @@
+name: ruby-lsp
+
+type: ruby
+
+up:
+  - ruby: 3.1.1
+  - bundler:
+      gemfile: Gemfile
+
+commands:
+  server: exe/ruby-lsp
+  style: bin/rubocop
+  typecheck:
+    aliases: ["tc"]
+    run: "bundle exec srb tc"
+  test:
+    syntax:
+      argument: file
+      optional: args...
+    run: bin/test

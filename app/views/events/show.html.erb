@@ -8,8 +8,8 @@
 	</center>
 </h1>
 
-<% flash.each do |msg| %>
-	<%= msg %>
+<% if notice %>
+	<%= notice %>
 <% end %>
 
 <% if @event.creator == current_user %>
@@ -57,7 +57,7 @@
 		<% if @participants.exists?(user_id: current_user.id, event_id: @event.id) %>
 			<%= button_to "Cancel", event_participant_path(event_id: @event.id, id: @participants.ids), method: :delete %>
 		<% else %>
-			<%= form_with(model: [ @event, @event.participants.build] ) do |f| %>
+			<%= form_with(model: [ @event, @event.participants.build ] ) do |f| %>
 				<%= f.hidden_field :user_id, value: current_user.id %><br>
 				<%= f.hidden_field :event_id, value: @event.id %><br>
 				<%= f.hidden_field :status, value: 'attendee' %><br>
