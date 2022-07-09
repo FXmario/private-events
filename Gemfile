@@ -78,3 +78,5 @@ end
 gem 'devise'
 
 gem 'bootstrap', '~> 5.1.3'
+
+gem "rails-html-sanitizer", ">= 1.4.3"
