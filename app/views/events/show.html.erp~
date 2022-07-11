@@ -1,0 +1,88 @@
+<% unless !current_user %>
+	<h3><%= current_user.email %></h3>
+<% end %>
+
+<h1>
+	<center>
+		<%= @event.event_name %>
+	</center>
+</h1>
+
+<% if notice %>
+	<%= notice %>
+<% end %>
+
+<% if @event.creator == current_user %>
+	<div data-turbo="false">
+		<center>
+			<%= link_to "Edit this event", edit_event_path(@event) %><br> <br>
+			<% @users.each do |user| %>
+				<% unless user.id == @event.attendeer %>
+					<%= form_with(model: [ @event, @event.participants.build ]) do |f| %>
+						<%= f.hidden_field :user_id, value: user.id %>
+						<%= f.hidden_field :event_id, value: @event.id %>
+						<%= f.hidden_field :status, value: 'attendee' %> 
+						<%= user.email %>
+						<%= f.submit value: "Invite User" %><br>
+					<% end %>
+				<% else %>
+					<p> <%= user.email %> already joined to this event </p>
+				<% end %>
+			<% end %>
+		</center>
+	</div>
+<% end %>
+
+<div>
+	<% if @participants.empty? %>
+		<h5>No Participant</h5>
+		<hr>
+	<% else %>
+		<% @participants.each do |participant| %>
+			ID Participant : <%= participant.id %><br>
+			Event : <%= participant.event.event_name %><br>
+			User : <%= participant.user.email %><br>
+			<hr>
+		<% end %>
+	<% end %>
+</div>
+
+<div>
+	<div>
+		Title : <%= @event.event_name %><br>
+	</div>
+	<div>
+		Author : <%= @event.creator.email %><br>
+	</div>
+	<div>
+		Date : <%= @event.date %><br>
+	</div>
+	<div>
+		Location : <%= @event.location %><br>
+	</div>
+	<div>
+		Event Description : <br>
+	</div>
+	<div>
+		<%= @event.body %><br>
+	</div>
+	<% if current_user %>
+		<% if @participants.exists?(user_id: current_user.id, event_id: @event.id) %>
+			<%= button_to "Cancel", event_participant_path(event_id: @event.id, id: @participants.ids), method: :delete %>
+		<% else %>
+			<%= form_with(model: [ @event, @event.participants.build ] ) do |f| %>
+				<%= f.hidden_field :user_id, value: current_user.id %><br>
+				<%= f.hidden_field :event_id, value: @event.id %><br>
+				<%= f.hidden_field :status, value: 'attendee' %><br>
+				<%= f.submit value: "Join this event" %>
+			<% end %>
+		<% end %>			
+	<% else %>
+		Wanna join to this event? <%= link_to "Login here first", new_user_session_path %>.<br>
+		New user? <%= link_to "Sign in here", new_user_registration_path %><br>
+	<% end %>
+
+	<div>
+		<br><%= link_to "Back to all events", root_path %>
+	</div>
+</div>

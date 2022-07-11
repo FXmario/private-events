@@ -2,6 +2,7 @@
 
 <% if user_signed_in? %>
 	<div>
+		<%= current_user.email %> <br> <br>
 		<%= link_to "Log out", destroy_user_session_path, 'data-turbo-method': :delete %>
 	</div>
 	<br>
@@ -33,23 +34,17 @@
 		<% unless @events_upcoming.empty? %>
 			<h4>Upcoming Events</h4>
 			<% @events_upcoming.each do |event| %>
-				<% if event.privated? %>
-					<% if event.attendeer == current_user && event.creator == current_user %>
-						Author : <%= event.creator.email %><br>
-						Event Name : <%= link_to event.event_name, event %><br>
-						Date : <%= event.date %><br>
-						Location : <%= event.location %><br>
-					<% end %>
-				<hr>
+				Author : <%= event.creator.email %><br>
+				Event Name : <%= link_to event.event_name, event %><br>
+				Date : <%= event.date %><br>
+				Location : <%= event.location %><br>
+				<% if event.attendeer == [] %>
+					Participants : No participants
 				<% else %>
-					Author : <%= event.creator.email %><br>
-					Event Name : <%= link_to event.event_name, event %><br>
-					Date : <%= event.date %><br>
-					Location : <%= event.location %><br>
-					<hr>
+					Participants : <%= event.attendeer.pluck(:email) %><br>
 				<% end %>
 			<% end %>
-			
+			<hr>
 		<% else %>
 			<h3>There is no upcoming events. Let's make some event!</h3>
 		<% end %>
@@ -65,6 +60,11 @@
 					Event Name : <%= link_to event.event_name, event %><br>
 					Date : <%= event.date %><br>
 					Location : <%= event.location %><br>
+					<% if event.attendeer == [] %>
+						Participants : No Participants
+					<% else %>
+						Participants : <%= event.attendeer.pluck(:email) %><br>
+					<% end %>	
 					<hr>
 				<% end %>
 			<% end %>

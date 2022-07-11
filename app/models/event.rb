@@ -4,10 +4,10 @@ class Event < ApplicationRecord
   scope :recent, -> { order(id: 'desc') }
   scope :counts, -> { where(status: 'public').count }
 
-  belongs_to :creator, class_name: "User", foreign_key: "user_id"
-  belongs_to :attendeer, class_name: "User", foreign_key: "user_id"
+  belongs_to :creator, class_name: "User", foreign_key: :user_id
   has_many :participants, dependent: :destroy
-  has_many :users, through: :participants
+  has_many :attendeer, through: :participants, source: :user
+
   has_rich_text :body
 
   validates :event_name, presence: true

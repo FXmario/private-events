@@ -1,0 +1,5 @@
+module ParticipantsHelper
+  def registered?
+    !user_id.nil?
+  end
+end
