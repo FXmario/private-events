@@ -16,6 +16,14 @@ class Event < ApplicationRecord
   validates :body, presence: true 
   validates :user_id, presence: true
 
+  after_save :auto_join
+
+  def auto_join
+    event = Event.find(self.id)
+
+    Participant.create(user_id: event.creator.id, event_id: event.id)
+  end
+
   VALID_STATUSES = ['private', 'public']
 
   validates :status, inclusion: { in: VALID_STATUSES }
