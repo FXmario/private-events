@@ -2,7 +2,6 @@ class Event < ApplicationRecord
   scope :past, -> { where("date < ? ", Date.today) }
   scope :upcoming, -> { where("date >= ? ", Date.today) }
   scope :recent, -> { order(id: 'desc') }
-  scope :counts, -> { where(status: 'public').count }
 
   belongs_to :creator, class_name: "User", foreign_key: :user_id
   has_many :participants, dependent: :destroy

@@ -55,19 +55,17 @@
 		<% unless @events_past.empty? %>
 			<h4>Past Events</h4>
 			<% @events_past.each do |event| %>
-				<% unless event.privated? %>
-					Author : <%= event.creator.email %><br>
-					Event Name : <%= link_to event.event_name, event %><br>
-					Date : <%= event.date %><br>
-					Location : <%= event.location %><br>
-					<% if event.attendeer == [] %>
-						Participants : No Participants
-					<% else %>
-						Participants : <%= event.attendeer.pluck(:email) %><br>
-					<% end %>	
-					<hr>
-				<% end %>
-			<% end %>
+				Author : <%= event.creator.email %><br>
+				Event Name : <%= link_to event.event_name, event %><br>
+				Date : <%= event.date %><br>
+				Location : <%= event.location %><br>
+				<% if event.attendeer == [] %>
+					Participants : No Participants
+				<% else %>
+					Participants : <%= event.attendeer.pluck(:email) %><br>
+				<% end %>	
+				<hr>
+		<% end %>
 		<% else %>
 			<h3>There is no past events.</h3>
 		<% end %>
