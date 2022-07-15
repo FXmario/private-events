@@ -23,8 +23,7 @@ class EventsController < ApplicationController
       flash[:notice] = "Event has been saved."
       redirect_to event_url(@event)
     else
-      flash[:notice] = "Event can't be saved."
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity, alert: "Event can't be saved."
     end
   end
 
@@ -36,8 +35,7 @@ class EventsController < ApplicationController
       flash[:notice] = "Event has been updated."
       redirect_to event_url(@event)
     else
-      flash[:notice] = "Event can't be updated."
-      render :new, status: :unprocessable_entity
+      render :new, status: :unprocessable_entity, alert: "Event can't be updated."
     end
   end
 

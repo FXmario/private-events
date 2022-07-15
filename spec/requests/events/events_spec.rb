@@ -14,13 +14,16 @@ RSpec.describe "Events", type: :request do
       date: Date.today, 
       location: "Universe", 
       body: "Description of the event", 
-      creator: @user
-      )}
+      creator: @user,
+      status: "public"
+    )}
 
-    it "should get index" do
-      get events_path
-      expect(response).to have_http_status(200)
-    end
+    describe "Index Page" do 
+      it "should get index" do
+        get events_path
+        expect(response).to have_http_status(200)
+      end
+    end 
 
     it "should get show" do
       get event_path(@event)
@@ -28,8 +31,7 @@ RSpec.describe "Events", type: :request do
     end
 
     it "should get new" do
-      # sign_in(@user) 
-      get new_event_path
+      get new_event_path(@user)
       expect(response).to have_http_status(200)
     end
   end

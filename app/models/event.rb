@@ -9,25 +9,25 @@ class Event < ApplicationRecord
 
   has_rich_text :body
 
-  validates :event_name, presence: true
+  validates :event_name, presence: true, length: { minimum: 6 }
   validates :date, presence: true
   validates :location, presence: true 
-  validates :body, presence: true 
+  validates :body, presence: true, length: { minimum: 10 } 
   validates :user_id, presence: true
 
   after_save :auto_join
 
-  def auto_join
-    event = Event.find(self.id)
+  private
+    def auto_join
+      event = Event.find(self.id)
+      Participant.create(user_id: event.creator.id, event_id: event.id)
+    end
 
-    Participant.create(user_id: event.creator.id, event_id: event.id)
-  end
+    VALID_STATUSES = ['private', 'public']
 
-  VALID_STATUSES = ['private', 'public']
+    validates :status, inclusion: { in: VALID_STATUSES }, presence: true
 
-  validates :status, inclusion: { in: VALID_STATUSES }
-
-  def privated?
-    status == 'private'
-  end
+    def privated?
+      status == 'private'
+    end
 end

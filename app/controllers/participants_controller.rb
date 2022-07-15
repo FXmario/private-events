@@ -4,11 +4,11 @@ class ParticipantsController < ApplicationController
 	def create
 		@participant = Participant.new(participant_params)
 	
-			if @participant.save
-				redirect_to event_url(@event), notice: "Successed join to this event"
-			else
-				redirect_to event_url(@event), alert: "This user can't join to this event."
-			end
+		if @participant.save
+			redirect_to event_url(@event), notice: "Successed join to this event"
+		else
+			redirect_to event_url(@event), alert: "This user can't join to this event."
+		end
 	end
 
 	def destroy
