@@ -1,15 +1,20 @@
-<h1>Home - Private Events</h1>
+<%= render "events/header" %>
 
 <% if user_signed_in? %>
 	<div>
 		<%= current_user.email %> <br> <br>
-		<%= link_to "Log out", destroy_user_session_path, 'data-turbo-method': :delete %>
+		<%= button_to "Log out", destroy_user_session_path, method: :delete %>
 	</div>
 	<br>
 	<div>
 	<% if notice %>
 		<div>
 			<%= notice %>
+		</div>
+	<% end %>
+	<% if alert %>
+		<div>
+			<%= alert %>
 		</div>
 	<% end %>
 	</div>

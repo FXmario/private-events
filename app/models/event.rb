@@ -17,17 +17,16 @@ class Event < ApplicationRecord
 
   after_save :auto_join
 
-  private
-    def auto_join
-      event = Event.find(self.id)
-      Participant.create(user_id: event.creator.id, event_id: event.id)
-    end
+   def auto_join
+     event = Event.find(self.id)
+     Participant.create(user_id: event.creator.id, event_id: event.id)
+   end
 
-    VALID_STATUSES = ['private', 'public']
+   VALID_STATUSES = ['private', 'public']
 
-    validates :status, inclusion: { in: VALID_STATUSES }, presence: true
+   validates :status, inclusion: { in: VALID_STATUSES }, presence: true
 
-    def privated?
-      status == 'private'
-    end
+   def privated?
+     status == 'private'
+   end
 end
