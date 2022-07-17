@@ -19,8 +19,9 @@
             <li>
               <%= link_to "Attended Events", "#", class: "dropdown-item link-primary" %>
             </li>
+            <hr class="divider">
             <li>
-              <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item link-primary" %>
+              <%= button_to "Log out", destroy_user_session_path, method: :delete, class: "dropdown-item link-danger" %>
             </li>
           </ul>
         </li>
