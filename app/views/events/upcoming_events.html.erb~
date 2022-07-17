@@ -1,4 +1,4 @@
-<% provide(:title, "Upcoming Events") %>
+<% provide(:title, "Home") %>
 
 <%= render "events/header" %>
 
@@ -22,22 +22,22 @@ There is <%= @upcoming.count %> events in here!
 			</a>
 		</div>
 
-		<div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example col-md-6 col-md-offset-3 mx-auto" tabindex="0">
+		<div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example mx-auto" tabindex="0">
 			<h4 id="list-item-1">
 				<%= link_to event.event_name, event %>
 			</h4>
 			<p>
 				Author : <%= event.creator.email %><br>
 				Date : <%= event.date %><br>
-				Location : <%= event.location %><br>
+				Location : <%= event.location %><nr>
 				<% if event.attendeer == [] %>
 					Participants : No Participants
 				<% else %>
-					Participants : <%= event.attendeer.pluck(:email) %><br>
+					Participants : <%= event.attendeer.select(:email) %><br>
 				<% end %>
 			</p>
 		</div>
-		<hr class="divider">
+		<hr>
 	<% end %>
 <% else %>
 	<h3> There is no upcoming events. Let's make some new events!</h3>

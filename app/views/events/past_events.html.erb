@@ -1,95 +1,60 @@
-<% provide(:title, "Home") %>
+<% provide(:title, "Past Events") %>
 
 <%= render "events/header" %>
 
-<ul class="nav nav-tabs mx-auto col-md-6 col-md-offset-3">
+<ul class="nav nav-tabs mx-auto col-md-6 col-md-offset-3 d-flex justify-content-center">
 	<li class="nav-item">
-		<%= link_to "Upcoming Event", 
+		<%= link_to "Upcoming Events", root_path, class: "nav-link" %>
   </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Link</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link disabled">Disabled</a>
+	<li class="nav-item">
+		<%= link_to "Past Events", past_events_path, class: "nav-link active" %>
   </li>
 </ul>
 
-<% if user_signed_in? %>
-	<div>
-		<%= current_user.email %> <br> <br>
-		<%= button_to "Log out", destroy_user_session_path, method: :delete %>
-	</div>
-	<br>
-	<div>
-	<% if notice %>
-		<div>
-			<%= notice %>
+<h3 class="text-center">
+	There is <%= @past.count %> events in here!
+</h3>
+
+<% unless @past.empty? %>
+	<% @past.each do |event| %>
+		<div class="list-group col-md-6 col-md-offset mx-auto" id="list-example">
+			<a class="list-group-item list-group-item-action" href="#list-item-1">
+				<%= event.event_name %>
+			</a>
 		</div>
-	<% end %>
-	<% if alert %>
-		<div>
-			<%= alert %>
-		</div>
-	<% end %>
-	</div>
-<% else %>
-	<div>
-		<%= link_to "Login here", new_user_session_path %><br>
-		Don't have an account? Sign in <%= link_to "here", new_user_registration_path %>
-		<br>
-		<br>
+
+		<div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example col-md-6 col-md-offset-3 mx-auto" tabindex="0">
+			<h4 id="list-item-1">
+				<%= link_to event.event_name, event %>
+			</h4>
+			<table>
+				<tr>
+					<td>Author</td>
+					<td><%= event.creator.email %></td>
+				</tr>
+				<tr>
+					<td>Date</td>
+					<td><%= event.date %></td>
+				</tr>
+				<tr>
+					<td>Location</td>
+					<td><%= event.location %>
+				</tr>
+				<% if event.attendeer == [] %>
+					<tr>
+						<td>Participants</td>
+						<td>No Participants</td>
+					</tr>
+				<% else %>
+					<tr>
+						<td>Participants</td>
+						<td><%= event.attendeer.pluck(:email)%></td>
+					</tr>
+				<% end %>
+			</table>
+			<hr class="divider">
+		<% end %>
+	<% else %>
+		<h3>There is no past event</h3>
 	</div>
 <% end %>
-
-<div>
-	<p>
-		There is <%= @counting_events %> events in here!
-	</p>
-</div>
-
-<br>
-
-	<div>
-		<% unless @events_upcoming.empty? %>
-			<h4>Upcoming Events</h4>
-			<% @events_upcoming.each do |event| %>
-				Author : <%= event.creator.email %><br>
-				Event Name : <%= link_to event.event_name, event %><br>
-				Date : <%= event.date %><br>
-				Location : <%= event.location %><br>
-				<% if event.attendeer == [] %>
-					Participants : No participants
-				<% else %>
-					Participants : <%= event.attendeer.pluck(:email) %><br>
-				<% end %>
-			<% end %>
-			<hr>
-		<% else %>
-			<h3>There is no upcoming events. Let's make some event!</h3>
-		<% end %>
-
-		<hr>
-
-		
-		<% unless @events_past.empty? %>
-			<h4>Past Events</h4>
-			<% @events_past.each do |event| %>
-				Author : <%= event.creator.email %><br>
-				Event Name : <%= link_to event.event_name, event %><br>
-				Date : <%= event.date %><br>
-				Location : <%= event.location %><br>
-				<% if event.attendeer == [] %>
-					Participants : No Participants
-				<% else %>
-					Participants : <%= event.attendeer.pluck(:email) %><br>
-				<% end %>	
-				<hr>
-		<% end %>
-		<% else %>
-			<h3>There is no past events.</h3>
-		<% end %>
-	</div>
-<%= link_to "Add new event", new_event_path %>

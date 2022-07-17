@@ -6,12 +6,10 @@ class EventsController < ApplicationController
 
   def upcoming_events
     @upcoming = Event.upcoming.recent
-    @couting_upcoming = @upcoming.count
   end
 
   def past_events
     @past = Event.past.recent
-    @couting_past = @past.count
   end
 
   def show
