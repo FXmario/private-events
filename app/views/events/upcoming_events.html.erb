@@ -2,6 +2,15 @@
 
 <%= render "events/header" %>
 
+<ul class="nav nav-tabs mx-auto col-md-6 col-md-offset-3 d-flex justify-content-center">
+	<li class="nav-item">
+		<%= link_to "Upcoming Events", root_path, class: "nav-link active" %>
+  </li>
+	<li class="nav-item">
+		<%= link_to "Past Events", past_events_path, class: "nav-link" %>
+  </li>
+</ul>
+
 <% if user_signed_in? %>
 	<div>
 		<%= current_user.email %> <br> <br>
@@ -31,16 +40,16 @@
 
 <div>
 	<p>
-		There is <%= @counting_events %> events in here!
+		There is <%= @counting_upcoming %> events in here!
 	</p>
 </div>
 
 <br>
 
 	<div>
-		<% unless @events_upcoming.empty? %>
+		<% unless @upcoming.empty? %>
 			<h4>Upcoming Events</h4>
-			<% @events_upcoming.each do |event| %>
+			<% @upcoming.each do |event| %>
 				Author : <%= event.creator.email %><br>
 				Event Name : <%= link_to event.event_name, event %><br>
 				Date : <%= event.date %><br>
@@ -54,27 +63,6 @@
 			<hr>
 		<% else %>
 			<h3>There is no upcoming events. Let's make some event!</h3>
-		<% end %>
-
-		<hr>
-
-		
-		<% unless @events_past.empty? %>
-			<h4>Past Events</h4>
-			<% @events_past.each do |event| %>
-				Author : <%= event.creator.email %><br>
-				Event Name : <%= link_to event.event_name, event %><br>
-				Date : <%= event.date %><br>
-				Location : <%= event.location %><br>
-				<% if event.attendeer == [] %>
-					Participants : No Participants
-				<% else %>
-					Participants : <%= event.attendeer.pluck(:email) %><br>
-				<% end %>	
-				<hr>
-		<% end %>
-		<% else %>
-			<h3>There is no past events.</h3>
 		<% end %>
 	</div>
 <%= link_to "Add new event", new_event_path %>

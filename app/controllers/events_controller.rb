@@ -1,13 +1,17 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: [:index, :show]
-  before_action :set_events, except: [:index, :new, :create]
-  before_action :set_users, only: [:index, :show]
-  before_action :set_participants, only: [:index, :show]
+  before_action :authenticate_user!, except: [:upcoming_events, :past_events, :show]
+  before_action :set_events, except: [:upcoming_events, :past_events, :new, :create]
+  before_action :set_users, only: [:upcoming_events, :past_events, :show]
+  before_action :set_participants, only: [:upcoming_events, :past_events, :show]
 
-  def index
-    @events_past = Event.past.recent
-    @events_upcoming = Event.upcoming.recent
-    @counting_events = Event.count
+  def upcoming_events
+    @upcoming = Event.upcoming.recent
+    @couting_upcoming = @upcoming.count
+  end
+
+  def past_events
+    @past = Event.past.recent
+    @couting_past = @past.count
   end
 
   def show
