@@ -2,19 +2,7 @@
 
 <%= render "events/header" %>
 
-<ul class="nav nav-tabs mx-auto col-md-6 col-md-offset-3 d-flex justify-content-center">
-	<li class="nav-item">
-		<%= link_to root_path, class: "nav-link active" do %>
-			Upcoming Events
-			<span class="badge bg-primary text-light">
-				<%= @upcoming.count %>
-			</span>
-		<% end %>
-  </li>
-	<li class="nav-item">
-		<%= link_to "Past Events", past_events_path, class: "nav-link" %>
-  </li>
-</ul>
+<%= render "events/upcomingTab" %>
 
 <% unless @upcoming.empty? %>
 	<div class="container px-2 py-5">

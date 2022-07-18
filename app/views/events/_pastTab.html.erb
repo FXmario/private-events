@@ -1,0 +1,13 @@
+<ul class="nav nav-tabs mx-auto col-md-6 col-md-offset-3 d-flex justify-content-center">
+	<li class="nav-item">
+		<%= link_to "Upcoming Events", root_path, class: "nav-link" %>
+  </li>
+	<li class="nav-item">
+		<%= link_to past_events_path, class: "nav-link active" do %>
+			Past Events
+			<span class="badge bg-primary text-light">
+				<%= @past.count %>
+			</span>
+		<% end %>
+	</li>
+</ul>
