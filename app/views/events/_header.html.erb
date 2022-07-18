@@ -10,6 +10,9 @@
         <li class="nav-items">
           <%= link_to "Home", root_path, class: "nav-link active" %>
         </li>
+        <li>
+          <%= link_to "Create Event", new_event_path, class: "nav-link" %>
+        </li>
         <li class="dropdown">
           <a href="#" class="nav-link dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
             Account
@@ -18,6 +21,9 @@
           <ul class="dropdown-menu bg-light" aria-labelledby="dropdownUser1">
             <li>
               <%= link_to "Attended Events", "#", class: "dropdown-item link-primary" %>
+            </li>
+            <li>
+              <%= link_to "Your Events", "#", class: "dropdown-item link-primary" %>
             </li>
             <hr class="divider">
             <li>

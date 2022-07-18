@@ -4,41 +4,40 @@
 
 <ul class="nav nav-tabs mx-auto col-md-6 col-md-offset-3 d-flex justify-content-center">
 	<li class="nav-item">
-		<%= link_to "Upcoming Events", root_path, class: "nav-link active" %>
+		<%= link_to root_path, class: "nav-link active" do %>
+			Upcoming Events
+			<span class="badge bg-primary text-light">
+				<%= @upcoming.count %>
+			</span>
+		<% end %>
   </li>
 	<li class="nav-item">
 		<%= link_to "Past Events", past_events_path, class: "nav-link" %>
   </li>
 </ul>
 
-There is <%= @upcoming.count %> events in here!
-
 <% unless @upcoming.empty? %>
-	<% @upcoming.each do |event| %>
-
-		<div class="list-group col-md-6 col-md-offset-3 mx-auto" id="list-example">
-			<a class="list-group-item list-group-item-action" href="#list-item-1">
-				<%= event.event_name %>
-			</a>
+	<div class="container px-2 py-5">
+		<div class="row d-flex justify-content-center d-grid gap-3">
+			<% @upcoming.each do |event| %>
+				<div class="card" style="width: 20rem;">
+					<div class="card-body">
+						<h4 class="card-title text-center text-truncate">
+							<%= event.event_name %>
+						</h4>
+						<hr class="divider">
+						<p class="card-text">
+							Created by <%= event.creator.email %><br>
+							At <%= event.location %> | <%= event.date&.strftime('%d %B %Y') %>
+						</p>
+						<%= link_to "Go to event details", event, class: "btn btn-outline-primary d-grid gap-3" %>
+					</div>
+				</div>
+			<% end %>
 		</div>
-
-		<div data-bs-spy="scroll" data-bs-target="#list-example" data-bs-smooth-scroll="true" class="scrollspy-example col-md-6 col-md-offset-3 mx-auto" tabindex="0">
-			<h4 id="list-item-1">
-				<%= link_to event.event_name, event %>
-			</h4>
-			<p>
-				Author : <%= event.creator.email %><br>
-				Date : <%= event.date %><br>
-				Location : <%= event.location %><br>
-				<% if event.attendeer == [] %>
-					Participants : No Participants
-				<% else %>
-					Participants : <%= event.attendeer.pluck(:email) %><br>
-				<% end %>
-			</p>
-		</div>
-		<hr class="divider">
-	<% end %>
+	</div>
 <% else %>
-	<h3> There is no upcoming events. Let's make some new events!</h3>
+	<h3 class="text-center">
+		There is no upcoming events. Let's make some events!
+	</h3>
 <% end %>
