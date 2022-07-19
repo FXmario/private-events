@@ -1,6 +1,10 @@
 <% provide(:title, "Edit Event") %>
 
-<h1>Edit <%= @event.event_name %></h1>
+<%= render 'events/newEventHeader' %>
+
+<h1 class="text-center mb-4">
+	Edit <%= @event.event_name %>
+</h1>
 
 <div>
 	<%= render "form", event: @event %>
