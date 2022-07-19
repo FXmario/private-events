@@ -10,7 +10,7 @@ RSpec.describe Event, type: :model do
               date: Date.current, 
               location: "example",
               body: "aaaaaaaaaa",
-              status: "public",
+              status: "Public",
               creator: user
              )
   }
@@ -70,7 +70,7 @@ RSpec.describe Event, type: :model do
                       date: Date.current, 
                       location: "Example location", 
                       body: "abcdefghijklmn",
-                      status: "private",
+                      status: "Private",
                       creator: user)
     event.save
     

@@ -22,11 +22,11 @@ class Event < ApplicationRecord
      Participant.create(user_id: event.creator.id, event_id: event.id)
    end
 
-   VALID_STATUSES = ['private', 'public']
+   VALID_STATUSES = ['Private', 'Public']
 
    validates :status, inclusion: { in: VALID_STATUSES }, presence: true
 
    def privated?
-     status == 'private'
+     status == 'Private'
    end
 end

@@ -11,10 +11,10 @@
       <% if user_signed_in? %>
         <ul class="nav nav-pills ms-auto">
           <li class="nav-items">
-            <%= link_to "Home", root_path, class: "nav-link active" %>
+            <%= link_to "Home", root_path, class: "nav-link" %>
           </li>
           <li>
-            <%= link_to "Create Event", new_event_path, class: "nav-link" %>
+            <%= link_to "Create Event", new_event_path, class: "nav-link active" %>
           </li>
           <li class="dropdown">
             <a href="#" class="nav-link dropdown-toggle text-center" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
