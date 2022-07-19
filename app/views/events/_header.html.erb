@@ -1,52 +1,56 @@
- <div class="container">
-   <header class="d-flex flex-wrap justify-content-center py-3 mb-4 border-bottom">
-     <a href="/" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-dark text-decoration-none">
-       <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
-       <span class="fs-4">The Events</span>
-     </a>
+<nav class="navbar navbar-expand-lg navbar-light d-flex flex-wrap justify-content-start py-3 mb-4 border-bottom">
+  <div class="container">
+    <a href="/" class="d-flex align-items-start text-dark text-decoration-none navbar-brand">
+      <svg class="bi me-2" width="40" height="32"><use xlink:href="#bootstrap"/></svg>
+      <span class="fs-4">The Events</span>
+    </a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarScroll">
+      <% if user_signed_in? %>
+        <ul class="nav nav-pills ms-auto">
+          <li class="nav-items">
+            <%= link_to "Home", root_path, class: "nav-link active" %>
+          </li>
+          <li>
+            <%= link_to "Create Event", new_event_path, class: "nav-link" %>
+          </li>
+          <li class="dropdown">
+            <a href="#" class="nav-link dropdown-toggle text-center" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
+              Account
+            </a>
 
-     <% if user_signed_in? %>
-       <ul class="nav nav-pills">
-        <li class="nav-items">
-          <%= link_to "Home", root_path, class: "nav-link active" %>
-        </li>
-        <li>
-          <%= link_to "Create Event", new_event_path, class: "nav-link" %>
-        </li>
-        <li class="dropdown">
-          <a href="#" class="nav-link dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
-            Account
-          </a>
-
-          <ul class="dropdown-menu bg-light" aria-labelledby="dropdownUser1">
-            <li>
-              <%= link_to "Attended Events", "#", class: "dropdown-item link-primary" %>
-            </li>
-            <li>
-              <%= link_to "Your Events", "#", class: "dropdown-item link-primary" %>
-            </li>
-            <hr class="divider">
-            <li>
-              <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item link-danger" %>
+            <ul class="dropdown-menu" aria-labelledby="dropdownUser1">
+              <li>
+                <%= link_to "Attended Events", "#", class: "dropdown-item link-primary" %>
+              </li>
+              <li>
+                <%= link_to "Your Events", "#", class: "dropdown-item link-primary" %>
+              </li>
+              <hr class="divider">
+              <li>
+                <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "dropdown-item link-danger" %>
+              </li>
+             </ul>
             </li>
           </ul>
-        </li>
-      </ul>
-    <% else %>
-     <ul class="nav nav-pills">
-       <li class="nav-item">
-         <%= link_to "Home", root_path, class: "nav-link active" %>
-       </li>
-        <li>
-          <%= link_to "Create Event", new_event_path, class: "nav-link" %>
-        </li>
-       <li class="nav-item">
-         <%= link_to "Sign in", new_user_registration_path, class: "nav-link" %>
-       </li>
-       <li class="nav-item">
-         <%= link_to "Sign up", new_user_session_path, class: "nav-link" %>
-       </li>
-     </ul>
-   <% end %>
-   </header>
- </div>
+        <% else %>
+          <ul class="nav nav-pills navbar-nav-scroll ms-auto" style="--bs-scroll-height: 200px;">
+            <li class="nav-item">
+             <%= link_to "Home", root_path, class: "nav-link active" %>
+            </li>
+            <li>
+              <%= link_to "Create Event", new_event_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+            </li>
+            <li class="nav-item">
+              <%= link_to "Sign in", new_user_session_path, class: "nav-link" %>
+         </li>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</nav>
