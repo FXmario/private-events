@@ -1,4 +1,5 @@
 import { Application } from "@hotwired/stimulus"
+import * as Popper from "@popperjs/core"
 
 const application = Application.start()
 
