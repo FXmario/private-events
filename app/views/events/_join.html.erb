@@ -1,0 +1,23 @@
+<% if current_user %>
+	<% if @participants.exists?(user_id: current_user.id, event_id: @event.id) %>
+		<div class="mb-3 d-grid gap-2">
+			<%= button_to "Cancel", event_participant_path(event_id: @event.id, id: @participants.ids), method: :delete, class: "btn btn-outline-danger" %>
+		</div>
+	<% else %>
+		<% unless @event.privated? %>
+			<%= form_with(model: [ @event, @event.participants.build ] ) do |f| %>
+				<%= f.hidden_field :user_id, value: current_user.id %>
+				<%= f.hidden_field :event_id, value: @event.id %>
+				<%= f.hidden_field :status, value: 'attendee' %>
+				<div class="mb-3 d-grid gap-2">
+					<%= f.submit value: "Join this event", class: "btn btn-outline-primary" %>
+				</div>	
+			<% end %>
+		<% else %>
+			<h3>This is private event. Creator must invite you to join in this event</h3>
+		<% end %>
+	<% end %>
+<% else %>
+	Wanna join to this event? <%= link_to "Login here first", new_user_session_path %>.<br>
+	New user? <%= link_to "Sign in here", new_user_registration_path %><br>
+<% end %>

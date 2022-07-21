@@ -1,0 +1,43 @@
+<% if @event.creator == current_user %>
+	<div data-turbo="false">
+		<div class="accordion" id="accordionInvite">
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingOne">
+					<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+						Invite Users
+					</button>
+				</h2>
+				<div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parrent="#accordionInvite">
+					<div class="accordion-body">
+						<% if @event.date <= Date.current %>
+							<p>Event has been ended.</p>
+						<% else %>
+							<% @users.each do |user| %>
+								<% unless @participants.exists?(user_id: user.id, event_id: @event.id) %>
+									<%= form_with(model: [ @event, @event.participants.build ]) do |f| %>
+										<%= f.hidden_field :user_id, value: user.id %>
+										<%= f.hidden_field :event_id, value: @event.id%>
+										<%= f.hidden_field :status, value: 'attendee' %> 
+										<div class="mb-3 d-grid gap-2">
+											<%= user.email %>
+											<%= f.submit value: "Invite", class: "btn btn-outline-primary" %>
+											<hr class="divider">
+										</div>									
+									<% end %>
+								<% else %>
+									<% unless user.email == current_user.email %>
+										<p><%= user.email %> already join to this event </p>
+										<hr class="divider">
+									<% else %>
+										<p>You're already joined to this event </p>
+										<hr class="divider">
+									<% end %>
+								<% end %>
+							<% end %>
+						<% end %>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<% end %>

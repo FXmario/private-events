@@ -1,0 +1,22 @@
+<div class="accordion" id="accordionParticipants">
+	<div class="accordion-item">
+		<h2 class="accordion-header" id="headingTwo">
+			<button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+				Participants
+			</button>
+		</h2>
+		<div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parrent="#accordionParticipants">
+			<div class="accordion-body text-start">
+				<% if @participants.empty? %>
+					<h5>No Participant</h5>
+					<hr class="divider">
+				<% else %>
+					<% @participants.each do |participant| %>
+						User : <%= participant.user.email %><br>
+						<hr class="divider">
+					<% end %>
+				<% end %>
+			</div>
+		</div>
+	</div>
+</div>
