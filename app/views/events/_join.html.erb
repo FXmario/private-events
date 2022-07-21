@@ -24,6 +24,8 @@
 		<% end %>
 	<% end %>
 <% else %>
-	Wanna join to this event? <%= link_to "Login here first", new_user_session_path %>.<br>
-	New user? <%= link_to "Sign in here", new_user_registration_path %><br>
+	<p class="text-start">
+		Wanna join to this event? <%= link_to "Login", new_user_session_path %>.
+		New user? <%= link_to "Sign up", new_user_registration_path %><br>
+	</p>
 <% end %>
