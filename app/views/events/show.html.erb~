@@ -21,7 +21,7 @@
 		</div>
 		<div class="col">
 			<div class="text-start mb-2">
-				Creator: <%= @event.creator.email %><br>
+				Creator: <%= @event.creator %>
 				Date: <%= @event.date %><br>
 				Location: <%= @event.location %>
 			</div>
