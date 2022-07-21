@@ -1,24 +1,6 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+# About this project
+<p>
+  This project is a part of <a href="https://www.theodinproject.com/lessons/ruby-on-rails-private-events"> The Odin Project curriculum:Private Events</a> to build website like <a href="https://www.eventbrite.com/"> Eventbrite </a>
+</p>
+# Live Preview
+https://whispering-hollows-48315.herokuapp.com/
