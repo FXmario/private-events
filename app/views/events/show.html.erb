@@ -26,7 +26,11 @@
 				Location: <%= @event.location %>
 			</div>
 			<% if current_user == @event.creator %>
-				<%= link_to "Edit this event", edit_event_path(@event), class: "btn btn-outline-primary d-grid gap-2 mb-3" %>
+				<% unless @event.date <= Date.current %>
+					<%= link_to "Edit this event", edit_event_path(@event), class: "btn btn-outline-primary d-grid gap-2 mb-3" %>
+				<% else %>
+					<p>This event has been ended</p>
+				<% end %>
 			<% else %>
 				<%= render 'events/join' %>
 			<% end %>
