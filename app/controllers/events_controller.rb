@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, except: [:upcoming_events, :past_events, :show]
-  before_action :set_events, except: [:upcoming_events, :past_events, :new, :create]
+  before_action :authenticate_user!, except: [:upcoming_events, :past_events, :show, :attended_events]
+  before_action :set_events, except: [:upcoming_events, :past_events, :new, :create, :attended_events]
   before_action :set_users, only: [:upcoming_events, :past_events, :show]
   before_action :set_participants, only: [:upcoming_events, :past_events, :show]
 
@@ -10,6 +10,9 @@ class EventsController < ApplicationController
 
   def past_events
     @past = Event.past.recent
+  end
+
+  def attended_events
   end
 
   def show

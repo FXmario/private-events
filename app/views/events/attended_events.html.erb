@@ -1,0 +1,33 @@
+<% provide(:title, "Attended Events") %>
+
+<%= render "events/headerShow" %>
+
+<h1 class="text-center mb-3">
+	Attended Events
+</h1>
+
+<% unless current_user.attended_events.empty? %>
+	<div class="container px-2 py-5">
+		<div class="row d-flex justify-content-center d-grid gap-3">
+			<% current_user.attended_events.each do |event| %>
+				<div class="card shadow-lg p-3 mb-5 bg-body rounded" style="width: 20rem;">
+					<div class="card-body">
+						<h4 class="card-title text-center text-truncate text-primary">
+							<%= event.event_name %>
+						</h4>
+						<hr class="divider">
+						<p class="card-text">
+							Created by <%= event.creator.email %><br>
+							At <%= event.location %> | <%= event.date&.strftime('%d %B %Y') %>
+						</p>
+						<%= link_to "Go to event details", event, class: "btn btn-outline-primary d-grid gap-3" %>
+					</div>
+				</div>
+			<% end %>
+		</div>
+	</div>
+<% else %>
+	<h3 class="text-center mb-5">
+		There is no upcoming events. Let's make some events!
+	</h3>
+<% end %>
